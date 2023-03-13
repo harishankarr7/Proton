@@ -28,3 +28,19 @@ typedef struct WINE_XR_STRUCT_NAME(XrNegotiateApiLayerRequest) {
     PFN_xrCreateApiLayerInstance createApiLayerInstance;
 } WINE_XR_STRUCT_ATTR WINE_XR_STRUCT_NAME(XrNegotiateApiLayerRequest);
 */
+
+struct loader_generic_list {
+    size_t capacity;
+    uint32_t count;
+    void *list;
+};
+struct loader_extension_list {
+    size_t capacity;
+    uint32_t count;
+    VkExtensionProperties *list;
+};
+struct loader_dev_ext_props {
+    VkExtensionProperties props;
+    uint32_t entrypoint_count;
+    char **entrypoints;
+};

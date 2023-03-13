@@ -105,6 +105,23 @@ public:
 
 	// remote storage
 	virtual ISteamRemoteStorage *GetISteamRemoteStorage( HSteamUser hSteamuser, HSteamPipe hSteamPipe, const char *pchVersion ) = 0;
+	
+	/// start a producer
+	  pub fn open_producer_link(&self, destination: String) -> Link {
+	    unsafe{
+	      let sender_name = "sender2";
+	      let c_sender_name = CString::new(sender_name).unwrap();
+	      let link = pn_sender(self.session, c_sender_name.as_ptr());
+	      let c_amqp_address = CString::new(destination).unwrap();
+	      pn_terminus_set_address(pn_link_target(link), c_amqp_address.as_ptr());
+	      pn_link_open(link);
+	      self.wait_for(pn_event_type_t::PN_LINK_FLOW);
+	      Link{
+		link: link,
+		proactor: self.proactor,
+	      }
+	    }
+	  }
 
 	// this needs to be called every frame to process matchmaking results
 	// redundant if you're already calling SteamAPI_RunCallbacks()

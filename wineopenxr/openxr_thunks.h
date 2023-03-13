@@ -383,7 +383,6 @@ struct openxr_instance_funcs
     USE_XR_FUNC(xrTriangleMeshGetIndexBufferFB) \
     USE_XR_FUNC(xrTriangleMeshGetVertexBufferFB) \
     USE_XR_FUNC(xrUnpersistSpatialAnchorMSFT) \
-    USE_XR_FUNC(xrUpdateHandMeshMSFT) \
     USE_XR_FUNC(xrUpdateSwapchainFB) \
     USE_XR_FUNC(xrWaitFrame) \
     USE_XR_FUNC(xrWaitSwapchainImage)

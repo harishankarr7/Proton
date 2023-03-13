@@ -423,6 +423,27 @@ impl StreamState {
         }
     }
 
+    impl Source for Decoder {
+    #[inline]
+    fn current_frame_len(&self) -> Option<usize> {
+        self._current_frame_len()
+    }
+
+    #[inline]
+    fn channels(&self) -> u16 {
+        self._channels()
+    }
+
+    #[inline]
+    fn sample_rate(&self) -> u32 {
+        self._sample_rate()
+    }
+
+    #[inline]
+    fn total_duration(&self) -> Option<Duration> {
+        self._total_duration()
+    }
+        
     fn write_to_foz(&self) -> Result<(), gst::LoggableError> {
         if self.needs_dump && !self.buffers.is_empty() {
             let db = &mut (*DUMP_FOZDB).lock().unwrap();
